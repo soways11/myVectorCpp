@@ -1,15 +1,16 @@
 template <typename type> class vector{
     private:
+        type* elements;
         long long int size;
         long long int capacity;
         void prResize(); // set capacity = 2 * size and relocate memory
     public:
-        type* elements;
         vector(long long int n = 0); // base constructor with set size or stardant size = 0
         vector(long long int n, type x); // overloaded constructor with set size and standart element
         ~vector(); // destructor: deleting pointer to array
         void resize(long long int n = 0); // the same as base constructor
         void resize(long long int n, type x); // the same as overloaded constructor
+        type& operator[] (long long int pos);
         long long int getSize(); // return size
         long long int getCapacity(); // return capacity
         type* begin(); //pointer to 1st element 
@@ -49,6 +50,9 @@ template <typename type> vector<type>::vector(long long int n, type x){
 }
 template <typename type> vector<type>::~vector(){
     delete [] elements; // deallocate memory of array
+}
+template <typename type> type& vector<type>::operator[] (long long int pos){
+    return elements[pos];
 }
 template <typename type> long long int vector<type>::getSize(){
     return size;
